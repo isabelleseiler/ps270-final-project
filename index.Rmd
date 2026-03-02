@@ -26,6 +26,6 @@ Evidence supporting my hypothesis would be a statistically significant relations
 
 ```{r}
 library(tidyverse)
-isdata <- read_csv("~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv") 
+isdata <- read_csv("~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv")
 ```
 
