@@ -11,12 +11,15 @@ output:
 
 ## Project Proposal 
 
-My research question is how did race related voting impacts elections of Barack Obama versus John McCain in 2008? For my final project, I will use the American National Election Studies (ANES) 2008 Time Series Study. This data will help me unpack how racial identity correlates to presidential vote choice. My hypothesis is that Black voters were more likely to elect Barack Obama in the election, while White voters were more likely to vote for John McCain. This hypothesis is plausible because voters are more likely to shape political preference based on their personal racial identity. Additionally, since Obama was the first Black candidate representing a major-party nominee which could have increased Black voters support for Barack Obama.
+My research question is: How did race relate to voting behavior in the 2024 presidential election? For my final project, I will use the American National Election Studies (ANES) 2024 Time Series Study to examine how racial identity correlates with presidential vote choice.
 
-My main independent variable is respondent race. In the ANES 2008 study, this operates as a categorical variable that identifies respondents with different racial group (White, Black, Hispanic, Asian, etc). On the other hand, the dependent variable is presidential vote choice in 2008 between the two candidates (Barack Obama and John McCain). Within my code, this variable will represent 1 which is a vote for Obama while 0 represents 0 which is a vote for McCain and excludes respondents who did not vote for one of the two major-party candidates.
+My hypothesis is that racial identity was significantly associated with vote choice in 2024. Specifically, my research measure whether Black voters were more likely to support the Democratic candidate, while White voters were more likely to support the Republican candidate. This hypothesis is plausible because voters tend to shape their political preferences based on their social identities. Racial identity can be predict voting behavior in U.S. presidential elections, and it likely played a role in the 2024 election.
 
-The observed pattern in the data would provide support for my hypothesis if Black respondents were more likely to support/vote for Obama. However, the hypothesis is not supported if race does not significantly predict vote choice after I control the specific party identification.
+My main independent variable is respondent race. In the ANES 2024 study, race is measured as a categorical variable that identifies respondents as White, Black, Hispanic, Asian, or other racial groups. This variation across respondents allows me to examine whether differences in racial identity are systematically related to vote choice.
 
+The dependent variable is presidential vote choice in 2024 between the two major-party candidates. I will code this variable so that 1 represents a vote for the Democratic candidate and 0 represents a vote for the Republican candidate, excluding respondents who did not vote for a major-party candidate.
+
+Evidence supporting my hypothesis would be a statistically significant relationship between race and vote choice, such that certain racial groups were more likely to support one candidate over the other. Evidence against my hypothesis would mean there is no meaningful relationship between race and vote choice, or a pattern where race does not significantly predict voting behavior after controlling for factors such as party identification.
 
 
 
