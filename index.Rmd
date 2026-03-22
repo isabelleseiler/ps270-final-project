@@ -29,3 +29,49 @@ library(tidyverse)
 isdata <- read_csv("~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv")
 ```
 
+
+```{r}
+cleaned <-isdata |>
+  select(race = V241501x, vote = V242096x) |>
+  filter(race > 0, vote > 0) |>
+  mutate(
+race_label = case_when(
+race == 1 ~ "White",
+race == 2 ~ "Black",
+race == 3 ~ "Hispanic",
+race == 4 ~ "Asian/PI",
+race == 5 ~ "Native Am.",
+race == 6 ~ "Multiracial"),
+vote_label = case_when(
+      vote == 1 ~ "Harris",
+      vote == 2 ~ "Trump",
+      vote == 3 ~ "Other",
+      vote == 4 ~ "Other",
+      vote == 5 ~ "Other",
+      vote == 6 ~ "Other"
+))
+plot_data <- cleaned |>
+  count(race_label, vote_label) |>
+  group_by(race_label) |>
+  mutate(pct = n / sum(n)) |>
+  ungroup()
+```
+
+
+```{r}
+ggplot(plot_data, aes(x = race_label, y = pct, fill = vote_label)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c(
+    "Harris" = "steelblue1",
+    "Trump"  = "indianred1",
+    "Other"  = "gray70"
+  )) +
+  labs(
+    x       = "Racial Identity",
+    y       = "Presidential Vote Choice",
+    fill    = "Vote choice",
+    title   = "2024 Presidential Vote Choice by Racial Identity"
+  )
+```
+
+
