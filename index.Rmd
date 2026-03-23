@@ -29,7 +29,6 @@ library(tidyverse)
 isdata <- read_csv("~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv")
 ```
 
-
 ```{r}
 cleaned <-isdata |>
   select(race = V241501x, vote = V242096x) |>
