@@ -1602,6 +1602,108 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='va'>results_table</span> <span class='op'>&lt;-</span> <span class='va'>cleaned</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>vote_label</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Harris"</span>, <span class='st'>"Trump"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>race_label</span>, <span class='va'>vote_label</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span></span>
+<span>    names_from <span class='op'>=</span> <span class='va'>vote_label</span>,</span>
+<span>    values_from <span class='op'>=</span> <span class='va'>n</span>,</span>
+<span>    values_fill <span class='op'>=</span> <span class='fl'>0</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span></span>
+<span>    total <span class='op'>=</span> <span class='va'>Harris</span> <span class='op'>+</span> <span class='va'>Trump</span>,</span>
+<span>    harris_pct <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>100</span> <span class='op'>*</span> <span class='va'>Harris</span> <span class='op'>/</span> <span class='va'>total</span>, <span class='fl'>1</span><span class='op'>)</span>,</span>
+<span>    trump_pct <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>100</span> <span class='op'>*</span> <span class='va'>Trump</span> <span class='op'>/</span> <span class='va'>total</span>, <span class='fl'>1</span><span class='op'>)</span></span>
+<span>  <span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span></span>
+<span>    Race <span class='op'>=</span> <span class='va'>race_label</span>,</span>
+<span>    `Harris voters` <span class='op'>=</span> <span class='va'>Harris</span>,</span>
+<span>    `Trump voters` <span class='op'>=</span> <span class='va'>Trump</span>,</span>
+<span>    `Total voters` <span class='op'>=</span> <span class='va'>total</span>,</span>
+<span>    `Percent Harris voters` <span class='op'>=</span> <span class='va'>harris_pct</span>,</span>
+<span>    `Percent Trump voters` <span class='op'>=</span> <span class='va'>trump_pct</span></span>
+<span>  <span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='va'>results_table</span>,</span>
+<span>             caption <span class='op'>=</span> <span class='st'>"Presidential vote choice by racial identity"</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Presidential vote choice by racial identity</caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 23%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Race</th>
+<th style="text-align: right;">Harris voters</th>
+<th style="text-align: right;">Trump voters</th>
+<th style="text-align: right;">Total voters</th>
+<th style="text-align: right;">Percent Harris voters</th>
+<th style="text-align: right;">Percent Trump voters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Asian/PI</td>
+<td style="text-align: right;">77</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">125</td>
+<td style="text-align: right;">61.6</td>
+<td style="text-align: right;">38.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Black</td>
+<td style="text-align: right;">287</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">313</td>
+<td style="text-align: right;">91.7</td>
+<td style="text-align: right;">8.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Hispanic</td>
+<td style="text-align: right;">219</td>
+<td style="text-align: right;">116</td>
+<td style="text-align: right;">335</td>
+<td style="text-align: right;">65.4</td>
+<td style="text-align: right;">34.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Multiracial</td>
+<td style="text-align: right;">70</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">56.9</td>
+<td style="text-align: right;">43.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Native Am.</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">50.0</td>
+<td style="text-align: right;">50.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">White</td>
+<td style="text-align: right;">1526</td>
+<td style="text-align: right;">1476</td>
+<td style="text-align: right;">3002</td>
+<td style="text-align: right;">50.8</td>
+<td style="text-align: right;">49.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Analysis: The data visualization and table depict a clear relationship between race and presidential vote choice in the 2024 election. Based on the outcomes, Harris was more likely to get support from Black voters, while Trump was more likely to get support from White supporters. Both Hispanic voters and Asian/PI voters reflect more variation in different ways in terms of their voting patterns. This pattern provides strong support for my hypothesis that racial identity is associated with vote choice and the regression confirms statistical significance. The results suggest that race continues to be a key factor shaping political behavior in U.S. presidential elections.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
