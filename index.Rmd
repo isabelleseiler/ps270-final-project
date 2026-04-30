@@ -7,37 +7,11 @@ output:
     self_contained: false
 ---
 
-
-
-## Introduction
-
-**Research Question**
-
-My research question is: How did race relate to voting behavior in the 2024 presidential election? For my final project, I will use the American National Election Studies (ANES) 2024 Time Series Study to examine how racial identity correlates with presidential vote choice.
-
-
-**My hypothesis is that racial identity impacted what candidate that individuals supported in the 2024 election**. Specifically, my research measure whether Black voters were more likely to support the Democratic candidate, while White voters were more likely to support the Republican candidate. This hypothesis is plausible because voters tend to shape their political preferences based on their social identities. Racial identity can be predict voting behavior in U.S. presidential elections, and it likely played a role in the 2024 election.
-
-My main **independent variable** is respondent race. In the ANES 2024 study, race is measured as a categorical variable that identifies respondents as White, Black, Hispanic, Asian, or other racial groups. This variation across respondents allows me to examine whether differences in racial identity are systematically related to vote choice.
-
-The **dependent variable** is presidential vote choice in 2024 between the two major-party candidates. I will code this variable so that 1 represents a vote for the Democratic candidate and 0 represents a vote for the Republican candidate, excluding respondents who did not vote for a major-party candidate.
-
-Evidence supporting my hypothesis would be a statistically significant relationship between race and vote choice, such that certain racial groups were more likely to support one candidate over the other. Evidence against my hypothesis would mean there is no meaningful relationship between race and vote choice, or a pattern where race does not significantly predict voting behavior after controlling for factors such as party identification.
-
-```{r}
-knitr::opts_chunk$set(echo = FALSE)
-```
-
-## Data
-
-```{r, include = FALSE}
+```{r, echo= FALSE}
 library(tidyverse)
 isdata <- read_csv("~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv")
 ```
-
-
-
-```{r, include = FALSE}
+```{r, echo = FALSE}
 cleaned <- isdata |>
   select(race = V241501x, vote = V242096x) |>
    filter(race > 0, vote > 0) |>
@@ -61,10 +35,81 @@ plot_data <- cleaned |>
   group_by(race_label) |>
   mutate(pct = n / sum(n)) |>
   ungroup()
+
 ```
 
+## Introduction
 
 
+
+**Research Question:** How did race relate to voting intentions in the 2024 presidential election? 
+
+**Hypothesis:** My hypothesis is that racial identity impacted what candidate that black voters are more likely to vote for Harris compared to white voters in the 2024 election. Specifically, my research measure whether Black voters were more likely to support the Democratic candidate, while White voters were more likely to support the Republican candidate. This hypothesis is plausible because voters tend to shape their political preferences based on their social identities. Racial identity can be predict voting behavior in U.S. presidential elections, and it likely played a role in the 2024 election.
+
+**Why this study is important? **
+
+This study is important because understanding how racial identity relates to voting behavior is essential for interpreting electoral outcomes and the social factors that shape them. Demographics like race can correlate with party affiliation, and understanding that relationship can impact how future campaigns are run and what policy outcomes are prioritized. Therefore, examining how race can be a predictor of presidential vote choice can raise awareness on these patterns in order to be better understood for future elections.
+
+## Data
+
+For my final project, I will use the American National Election Studies (ANES) 2024 Time Series Study to examine how racial identity correlates with presidential vote choice.
+
+My main **independent variable** is respondent race. In the ANES 2024 study, race is measured as a categorical variable that identifies respondents as White, Black, Hispanic, Asian, or other racial groups. This variation across respondents allows me to examine whether differences in racial identity are systematically related to vote choice.
+
+The **dependent variable** is presidential vote choice in 2024 between the two major-party candidates. I will code this variable so that 1 represents a vote for the Democratic candidate and 0 represents a vote for the Republican candidate, excluding respondents who did not vote for a major-party candidate.
+
+**Criteria for Supporting or Rejecting Hypothesis: **
+
+Evidence supporting my hypothesis would be a statistically significant relationship between race and vote choice, such that Black voters were more likely to support Harris over Trump compared to white voters. Evidence against my hypothesis would mean there is no meaningful relationship between race and vote choice, or a pattern where race does not significantly predict voting behavior after controlling for factors such as party identification.
+
+
+**Figure 1** 
+```{r, echo =FALSE}
+single_outcome_data <- cleaned |>
+  count(vote_label) |>
+  mutate(pct = n / sum(n))
+
+ggplot(single_outcome_data, aes(x = vote_label, y = pct, fill = vote_label)) +
+  geom_col(width = 0.5) +
+  scale_fill_manual(values = c(
+    "Harris" = "steelblue1",
+    "Trump"  = "indianred1"
+  )) +
+  scale_y_continuous(labels = scales::percent_format()) +
+  labs(
+    x     = "Vote Choice",
+    y     = "Proportion of Respondents",
+    fill  = "Vote Choice",
+    title = "Overall 2024 Presidential Vote Choice (Major-Party Voters)"
+  ) +
+  theme(legend.position = "none")
+```
+
+Figure 1 shows the distribution of presidential vote choice among major-party voters in the 2024 ANES sample. Roughly 54% of respondents voted for Harris and 46% voted for Trump. This sample illustrates slightly more support for Harris in the 2024 election.
+
+## Analysis
+
+**Figure 2**
+```{r, echo = FALSE}
+
+ggplot(plot_data, aes(x = race_label, y = pct, fill = vote_label)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c(
+    "Harris" = "steelblue1",
+    "Trump"  = "indianred1",
+    "Other" = "gray70"
+  )) +
+  labs(
+    x       = "Racial Identity",
+    y       = "Presidential Vote Choice",
+    fill    = "Vote choice",
+    title   = "2024 Presidential Vote Choice by Racial Identity"
+  )
+```
+
+The figure 2 visualization illustrates that there is not a huge difference in support for White voters between Harris and Trump which is likely because the sample being filtered to only include respondents who voted for one of the two major-party candidates, which might not be representative of the entire distribution of White voters who supported third-party candidates or did not vote. Since White voters made up the largest share of the overall sample, this filtering effect disproportionately affects their group's representation compared to smaller racial groups.
+
+**Table 1**
 ```{r,echo = FALSE}
 
 model <- lm(vote_binary ~ race_label,
@@ -86,43 +131,36 @@ model |>
 
 ```
 
-**Regression Analysis** 
+**Table 1 Explanation**
 
-To examine the relationship between racial identity and vote choice, I estimated a linear probability model predicting the probability of voting for Harris, with White voters as the reference group. Black voters were the most likely to vote for Harris, at 39.4 percentage points higher than White voters (p < 0.001). Hispanic voters were also significantly more likely to support Harris, at 12.8 percentage points above White voters (p < 0.001). Asian/PI voters showed an increase of 9.9 percentage points compared to White voters (p = 0.023). Multiracial and Native American voters did not show statistically significant differences from White voters. The intercept of 0.498 indicates that White voters were almost evenly split between the two candidates. These results support my hypothesis that racial identity predicts vote choice in the 2024 election as this is an observational study and the results are not interpreted as causal because other factors such as party identification may also explain these patterns.
-
-## Results and Figure
-
-```{r, echo = FALSE}
-pres_vote_bar <- ggplot(plot_data, aes(x = race_label, y = pct, fill = vote_label)) +
-  geom_col(position = "dodge") +
-  scale_fill_manual(values = c(
-    "Harris" = "steelblue1",
-    "Trump"  = "indianred1",
-    "Other" = "gray70"
-  )) +
-  labs(
-    x       = "Racial Identity",
-    y       = "Presidential Vote Choice",
-    fill    = "Vote choice",
-    title   = "2024 Presidential Vote Choice by Racial Identity"
-  )
-pres_vote_bar
-```
+To examine the relationship between racial identity and vote choice, I estimated a linear probability model predicting the probability of voting for Harris, with White voters as the reference group. Black voters were the most likely to vote for Harris, at 39.4 percentage points higher than White voters (p < 0.001). Hispanic voters were also significantly more likely to support Harris, at 12.8 percentage points above White voters (p < 0.001). Asian/PI voters showed an increase of 9.9 percentage points compared to White voters (p = 0.023). Multiracial and Native American voters did not show statistically significant differences from White voters. The intercept of 0.498 indicates that White voters were almost evenly split between the two candidates. 
 
 
+## Explanation of Results
 
-**Outcome Explanation**
+These results support my hypothesis that racial identity predicts vote choice in the 2024 election as this is an observational study and the results are not interpreted as causal because other factors such as party identification may also explain these patterns.
 
-The visualization illustrates that there is not a huge difference in support for White voters between Harris and Trump which is likely because the sample being filtered to only include respondents who voted for one of the two major-party candidates, which might not be representative of the entire distribution of White voters who supported third-party candidates or did not vote. Since White voters made up the largest share of the overall sample, this filtering effect disproportionately affects their group's representation compared to smaller racial groups.
+Based on the results within the bar chart that examines vote choice by racial identity, the most distinguishable relationship is among Black individuals that voted for Harris which is around 90% which was higher than other groups. White voters were split between Harris slightly under half. Asian/PI and Hispanic voters were above 60% in support of Kamala. Lastly, Multiracial voters showed a modest preference for Harris, while Native American respondents showed more support for Trump.
 
 
 
 ## Conclusion 
 
+In conclusion, the results support my hypothesis that Black voters would be significantly more likely to vote for Harris compared to White voters. The 39 percentage point gap difference was the largest in the model which represents high statistical significant. This proves that racial identity is a predictor of vote choice for Black individuals specifically those who supported Harris in the 2024 election. 
+
 This study uses a cross-sectional research design, drawing on survey data from the 2024 ANES Time Series Study. Because the data capture respondents at a single point in time, the analysis identifies associations between race and vote choice rather than causal effects. Because this is an observational, cross-sectional data set, the results should not be interpreted as causal. Other factors such as party identification or income may confound the relationship.
 
+Some limitations in the data sample is that it reflects more Democratic support when the outcome of the election in 2024 was that Trump (Republican Candidate) won. This is due to the fact that this is a survey data which could mean that Harris voters could have be over-represented in the data. Additionally, excluding third-party voters and non-voters may affect how representative the results are of the broader electorate. 
 
-While the figure shows that certain racial groups, particularly Black voters, strongly favored the Democratic candidate, this does not directly reflect the overall election outcome. The results instead illustrate within-group voting patterns, and overall election results also depend on the relative size and turnout of each group.
+A key limitation is that party identification likely confounds the results, since it is strongly correlated with both race and vote choice. Overall, the analysis would be improved with more resources by controlling for party identification and income to isolate the role of race in shaping presidential vote choice.
+
+
+
+
+
+**AI Disclosure**
+
+I used AI to help with coding suggestions to clean up my tables and graphs. Additionally, helped with rewording some analysis to be more clear.
 
 ```{r print-code, ref.label=knitr :: all_labels(), echo = TRUE, eval= FALSE }
 ```

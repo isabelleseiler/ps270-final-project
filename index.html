@@ -1544,22 +1544,38 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h2 id="introduction">Introduction</h2>
-<p><strong>Research Question</strong></p>
-<p>My research question is: How did race relate to voting behavior in the 2024 presidential election? For my final project, I will use the American National Election Studies (ANES) 2024 Time Series Study to examine how racial identity correlates with presidential vote choice.</p>
-<p><strong>My hypothesis is that racial identity impacted what candidate that individuals supported in the 2024 election</strong>. Specifically, my research measure whether Black voters were more likely to support the Democratic candidate, while White voters were more likely to support the Republican candidate. This hypothesis is plausible because voters tend to shape their political preferences based on their social identities. Racial identity can be predict voting behavior in U.S. presidential elections, and it likely played a role in the 2024 election.</p>
+<p><strong>Research Question:</strong> How did race relate to voting intentions in the 2024 presidential election?</p>
+<p><strong>Hypothesis:</strong> My hypothesis is that racial identity impacted what candidate that black voters are more likely to vote for Harris compared to white voters in the 2024 election. Specifically, my research measure whether Black voters were more likely to support the Democratic candidate, while White voters were more likely to support the Republican candidate. This hypothesis is plausible because voters tend to shape their political preferences based on their social identities. Racial identity can be predict voting behavior in U.S. presidential elections, and it likely played a role in the 2024 election.</p>
+<p><strong>Why this study is important? </strong></p>
+<p>This study is important because understanding how racial identity relates to voting behavior is essential for interpreting electoral outcomes and the social factors that shape them. Demographics like race can correlate with party affiliation, and understanding that relationship can impact how future campaigns are run and what policy outcomes are prioritized. Therefore, examining how race can be a predictor of presidential vote choice can raise awareness on these patterns in order to be better understood for future elections.</p>
+<h2 id="data">Data</h2>
+<p>For my final project, I will use the American National Election Studies (ANES) 2024 Time Series Study to examine how racial identity correlates with presidential vote choice.</p>
 <p>My main <strong>independent variable</strong> is respondent race. In the ANES 2024 study, race is measured as a categorical variable that identifies respondents as White, Black, Hispanic, Asian, or other racial groups. This variation across respondents allows me to examine whether differences in racial identity are systematically related to vote choice.</p>
 <p>The <strong>dependent variable</strong> is presidential vote choice in 2024 between the two major-party candidates. I will code this variable so that 1 represents a vote for the Democratic candidate and 0 represents a vote for the Republican candidate, excluding respondents who did not vote for a major-party candidate.</p>
-<p>Evidence supporting my hypothesis would be a statistically significant relationship between race and vote choice, such that certain racial groups were more likely to support one candidate over the other. Evidence against my hypothesis would mean there is no meaningful relationship between race and vote choice, or a pattern where race does not significantly predict voting behavior after controlling for factors such as party identification.</p>
+<p><strong>Criteria for Supporting or Rejecting Hypothesis: </strong></p>
+<p>Evidence supporting my hypothesis would be a statistically significant relationship between race and vote choice, such that Black voters were more likely to support Harris over Trump compared to white voters. Evidence against my hypothesis would mean there is no meaningful relationship between race and vote choice, or a pattern where race does not significantly predict voting behavior after controlling for factors such as party identification.</p>
+<strong>Figure 1</strong>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
+<p><img src="index_files/figure-html5/unnamed-chunk-3-1.png" alt="" width="624" /></p>
 </div>
+<p>Figure 1 shows the distribution of presidential vote choice among major-party voters in the 2024 ANES sample. Roughly 54% of respondents voted for Harris and 46% voted for Trump. This sample illustrates slightly more support for Harris in the 2024 election.</p>
+<h2 id="analysis">Analysis</h2>
+<strong>Figure 2</strong>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="index_files/figure-html5/unnamed-chunk-4-1.png" alt="" width="624" /></p>
 </div>
-<h2 id="data">Data</h2>
+<p>The figure 2 visualization illustrates that there is not a huge difference in support for White voters between Harris and Trump which is likely because the sample being filtered to only include respondents who voted for one of the two major-party candidates, which might not be representative of the entire distribution of White voters who supported third-party candidates or did not vote. Since White voters made up the largest share of the overall sample, this filtering effect disproportionately affects their group’s representation compared to smaller racial groups.</p>
+<strong>Table 1</strong>
 <div class="layout-chunk" data-layout="l-body">
 <table>
-<caption><span id="tab:unnamed-chunk-4">Table 1: </span>Probability of Voting for Harris</caption>
+<caption><span id="tab:unnamed-chunk-5">Table 1: </span>Probability of Voting for Harris</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Term</th>
@@ -1601,21 +1617,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </tbody>
 </table>
 </div>
-<p><strong>Regression Analysis</strong></p>
-<p>To examine the relationship between racial identity and vote choice, I estimated a linear probability model predicting the probability of voting for Harris, with White voters as the reference group. Black voters were the most likely to vote for Harris, at 39.4 percentage points higher than White voters (p &lt; 0.001). Hispanic voters were also significantly more likely to support Harris, at 12.8 percentage points above White voters (p &lt; 0.001). Asian/PI voters showed an increase of 9.9 percentage points compared to White voters (p = 0.023). Multiracial and Native American voters did not show statistically significant differences from White voters. The intercept of 0.498 indicates that White voters were almost evenly split between the two candidates. These results support my hypothesis that racial identity predicts vote choice in the 2024 election as this is an observational study and the results are not interpreted as causal because other factors such as party identification may also explain these patterns.</p>
-<h2 id="results-and-figure">Results and Figure</h2>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" alt="" width="624" /></p>
-</div>
-<p><strong>Outcome Explanation</strong></p>
-<p>The visualization illustrates that there is not a huge difference in support for White voters between Harris and Trump which is likely because the sample being filtered to only include respondents who voted for one of the two major-party candidates, which might not be representative of the entire distribution of White voters who supported third-party candidates or did not vote. Since White voters made up the largest share of the overall sample, this filtering effect disproportionately affects their group’s representation compared to smaller racial groups.</p>
+<p><strong>Table 1 Explanation</strong></p>
+<p>To examine the relationship between racial identity and vote choice, I estimated a linear probability model predicting the probability of voting for Harris, with White voters as the reference group. Black voters were the most likely to vote for Harris, at 39.4 percentage points higher than White voters (p &lt; 0.001). Hispanic voters were also significantly more likely to support Harris, at 12.8 percentage points above White voters (p &lt; 0.001). Asian/PI voters showed an increase of 9.9 percentage points compared to White voters (p = 0.023). Multiracial and Native American voters did not show statistically significant differences from White voters. The intercept of 0.498 indicates that White voters were almost evenly split between the two candidates.</p>
+<h2 id="explanation-of-results">Explanation of Results</h2>
+<p>These results support my hypothesis that racial identity predicts vote choice in the 2024 election as this is an observational study and the results are not interpreted as causal because other factors such as party identification may also explain these patterns.</p>
+<p>Based on the results within the bar chart that examines vote choice by racial identity, the most distinguishable relationship is among Black individuals that voted for Harris which is around 90% which was higher than other groups. White voters were split between Harris slightly under half. Asian/PI and Hispanic voters were above 60% in support of Kamala. Lastly, Multiracial voters showed a modest preference for Harris, while Native American respondents showed more support for Trump.</p>
 <h2 id="conclusion">Conclusion</h2>
+<p>In conclusion, the results support my hypothesis that Black voters would be significantly more likely to vote for Harris compared to White voters. The 39 percentage point gap difference was the largest in the model which represents high statistical significant. This proves that racial identity is a predictor of vote choice for Black individuals specifically those who supported Harris in the 2024 election.</p>
 <p>This study uses a cross-sectional research design, drawing on survey data from the 2024 ANES Time Series Study. Because the data capture respondents at a single point in time, the analysis identifies associations between race and vote choice rather than causal effects. Because this is an observational, cross-sectional data set, the results should not be interpreted as causal. Other factors such as party identification or income may confound the relationship.</p>
-<p>While the figure shows that certain racial groups, particularly Black voters, strongly favored the Democratic candidate, this does not directly reflect the overall election outcome. The results instead illustrate within-group voting patterns, and overall election results also depend on the relative size and turnout of each group.</p>
+<p>Some limitations in the data sample is that it reflects more Democratic support when the outcome of the election in 2024 was that Trump (Republican Candidate) won. This is due to the fact that this is a survey data which could mean that Harris voters could have be over-represented in the data. Additionally, excluding third-party voters and non-voters may affect how representative the results are of the broader electorate.</p>
+<p>A key limitation is that party identification likely confounds the results, since it is strongly correlated with both race and vote choice. Overall, the analysis would be improved with more resources by controlling for party identification and income to isolate the role of race in shaping presidential vote choice.</p>
+<p><strong>AI Disclosure</strong></p>
+<p>I used AI to help with coding suggestions to clean up my tables and graphs. Additionally, helped with rewording some analysis to be more clear.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>echo <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='va'>isdata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/anes_timeseries_2024_csv_20250808/anes_timeseries_2024_csv_20250808.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>cleaned</span> <span class='op'>&lt;-</span> <span class='va'>isdata</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span>race <span class='op'>=</span> <span class='va'>V241501x</span>, vote <span class='op'>=</span> <span class='va'>V242096x</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
@@ -1641,6 +1657,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>pct <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span></span>
+<span><span class='va'>single_outcome_data</span> <span class='op'>&lt;-</span> <span class='va'>cleaned</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>vote_label</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>pct <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>single_outcome_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>vote_label</span>, y <span class='op'>=</span> <span class='va'>pct</span>, fill <span class='op'>=</span> <span class='va'>vote_label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='st'>"Harris"</span> <span class='op'>=</span> <span class='st'>"steelblue1"</span>,</span>
+<span>    <span class='st'>"Trump"</span>  <span class='op'>=</span> <span class='st'>"indianred1"</span></span>
+<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='fu'><a href='https://scales.r-lib.org/reference/percent_format.html'>percent_format</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x     <span class='op'>=</span> <span class='st'>"Vote Choice"</span>,</span>
+<span>    y     <span class='op'>=</span> <span class='st'>"Proportion of Respondents"</span>,</span>
+<span>    fill  <span class='op'>=</span> <span class='st'>"Vote Choice"</span>,</span>
+<span>    title <span class='op'>=</span> <span class='st'>"Overall 2024 Presidential Vote Choice (Major-Party Voters)"</span></span>
+<span>  <span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"none"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>plot_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>race_label</span>, y <span class='op'>=</span> <span class='va'>pct</span>, fill <span class='op'>=</span> <span class='va'>vote_label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>    <span class='st'>"Harris"</span> <span class='op'>=</span> <span class='st'>"steelblue1"</span>,</span>
+<span>    <span class='st'>"Trump"</span>  <span class='op'>=</span> <span class='st'>"indianred1"</span>,</span>
+<span>    <span class='st'>"Other"</span> <span class='op'>=</span> <span class='st'>"gray70"</span></span>
+<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
+<span>    x       <span class='op'>=</span> <span class='st'>"Racial Identity"</span>,</span>
+<span>    y       <span class='op'>=</span> <span class='st'>"Presidential Vote Choice"</span>,</span>
+<span>    fill    <span class='op'>=</span> <span class='st'>"Vote choice"</span>,</span>
+<span>    title   <span class='op'>=</span> <span class='st'>"2024 Presidential Vote Choice by Racial Identity"</span></span>
+<span>  <span class='op'>)</span></span>
+<span></span>
 <span><span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>vote_binary</span> <span class='op'>~</span> <span class='va'>race_label</span>,</span>
 <span>             data <span class='op'>=</span> <span class='va'>cleaned</span><span class='op'>)</span></span>
 <span><span class='va'>model</span> <span class='op'>|&gt;</span></span>
@@ -1656,22 +1705,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span></span>
 <span>    col.names <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Term"</span>, <span class='st'>"Estimate"</span>, <span class='st'>"P-Value"</span><span class='op'>)</span>,</span>
-<span>    caption   <span class='op'>=</span> <span class='st'>"Probability of Voting for Harris"</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>pres_vote_bar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>plot_data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>race_label</span>, y <span class='op'>=</span> <span class='va'>pct</span>, fill <span class='op'>=</span> <span class='va'>vote_label</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>position <span class='op'>=</span> <span class='st'>"dodge"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
-<span>    <span class='st'>"Harris"</span> <span class='op'>=</span> <span class='st'>"steelblue1"</span>,</span>
-<span>    <span class='st'>"Trump"</span>  <span class='op'>=</span> <span class='st'>"indianred1"</span>,</span>
-<span>    <span class='st'>"Other"</span> <span class='op'>=</span> <span class='st'>"gray70"</span></span>
-<span>  <span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span></span>
-<span>    x       <span class='op'>=</span> <span class='st'>"Racial Identity"</span>,</span>
-<span>    y       <span class='op'>=</span> <span class='st'>"Presidential Vote Choice"</span>,</span>
-<span>    fill    <span class='op'>=</span> <span class='st'>"Vote choice"</span>,</span>
-<span>    title   <span class='op'>=</span> <span class='st'>"2024 Presidential Vote Choice by Racial Identity"</span></span>
-<span>  <span class='op'>)</span></span>
-<span><span class='va'>pres_vote_bar</span></span></code></pre>
+<span>    caption   <span class='op'>=</span> <span class='st'>"Probability of Voting for Harris"</span>, digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
